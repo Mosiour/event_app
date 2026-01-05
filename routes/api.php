@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\BookingsController;
 
 Route::get('/user', function (Request $request) {
@@ -32,3 +34,17 @@ Route::delete('/deleteuser/{id}',[UsersController::class,'deleteUser']);
 Route::get('/allbookings',[BookingsController::class,'GetAllBookings']);
 
 Route::get('/booking/{id}',[BookingsController::class,'GetBookingById']);
+
+/*
+* Event Routes
+*/
+Route::get('/allevents',[EventsController::class,'GetAllEvents']);
+
+/*
+Auth Routes
+*/
+Route::post('/member-registration',[AuthController::class,'memberRegistration']);
+
+Route::post('/member-login',[AuthController::class,'memberLogin']);
+
+Route::post('/member-logout',[AuthController::class,'memberLogout'])->middleware('auth:sanctum');
